@@ -7,7 +7,6 @@ library(MLmetrics)      # machine learning metrics
 library(car)            # VIF calculation
 library(lmtest)         # linear regression model testing
 library(GGally)         # correlation plot
-library(jsonlite)
 
 train <- read.csv("train.csv", stringsAsFactors=TRUE)
 test <- read.csv("test.csv", stringsAsFactors=TRUE)
@@ -84,14 +83,6 @@ rmsle <- RMSLE(pmax(y_pred[-149], eps), test$charges[-149])
 lin_reg <- cbind("MAE" = mae, "RMSE" = rmse, "RMSLE" = rmsle)
 lin_reg
 summary(lm_all)
-
-accuracy_mae <- (1 - (mae / mean(test$charges))) * 100
-accuracy_rmse <- (1 - (rmse / mean(test$charges))) * 100
-
-# print results
-cat("Accuracy (MAE):", round(accuracy_mae, 2), "%\n")
-cat("Accuracy (RMSE):", round(accuracy_rmse, 2), "%\n")
-
 
 # Save the model to a file
 saveRDS(lm_all, file = "medical_charges_model.rds")

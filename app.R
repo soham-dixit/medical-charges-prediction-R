@@ -4,7 +4,9 @@ library(shinyWidgets)
 library(dplyr)
 library(caret)
 library(MLmetrics)
-#setwd("D:/Degree/SEM4/DS CP")
+
+setwd("D:/Degree/SEM4/DS CP")
+
 # Load the saved linear regression model
 model <- readRDS("medical_charges_model.rds")
 
