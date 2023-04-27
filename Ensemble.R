@@ -1,4 +1,7 @@
+setwd("D:/Degree/SEM4/DS CP")
 library(caret)
+library(dplyr)
+library(GGally)  
 
 train <- read.csv("train.csv", stringsAsFactors=TRUE)
 test <- read.csv("test.csv", stringsAsFactors=TRUE)
@@ -44,3 +47,7 @@ ensemble_pred <- (0.5 * lm_pred) + (0.5 * svm_pred)
 # Calculate RMSE of ensemble predictions
 rmse <- sqrt(mean((test$charges - ensemble_pred)^2))
 cat(sprintf("Ensemble RMSE: %.3f\n", rmse))
+
+model_list <- list(model1 = model1, model2 = model2)
+saveRDS(model_list, file = "ensemble_model.rds")
+
