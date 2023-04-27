@@ -95,16 +95,3 @@ cat("Accuracy (RMSE):", round(accuracy_rmse, 2), "%\n")
 
 # Save the model to a file
 saveRDS(lm_all, file = "medical_charges_model.rds")
-
-# Save the model in .json file
-model_list <- list(
-  coefficients = coefficients(lm_all),
-  residuals = resid(lm_all),
-  fitted.values = fitted(lm_all)
-)
-
-# convert the list to JSON format
-model_json <- toJSON(model_list)
-
-# write the JSON string to a file
-writeLines(model_json, "model.json")

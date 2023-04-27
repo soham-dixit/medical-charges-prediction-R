@@ -4,7 +4,7 @@ library(shinyWidgets)
 library(dplyr)
 library(caret)
 library(MLmetrics)
-setwd("D:/Degree/SEM4/DS CP")
+#setwd("D:/Degree/SEM4/DS CP")
 # Load the saved linear regression model
 model <- readRDS("medical_charges_model.rds")
 
@@ -12,7 +12,7 @@ model <- readRDS("medical_charges_model.rds")
 ui <- fluidPage(
   
   # App title
-  titlePanel("Medical Charges Prediction"),
+  titlePanel("Medical Cost Prediction"),
   
   # Sidebar panel with input widgets
   sidebarPanel(
