@@ -33,16 +33,16 @@ for (col in c('gender', 'region', 'children', 'smoker')) {
 ggcorr(train %>% mutate_if(is.factor, as.numeric), label = TRUE)
 
 model1 <- train(charges ~ ., data = train, method = "lm")
-model2 <- train(charges ~ ., data = train, method = "svmRadial")
-model3 <- train(charges ~ ., data = train, method = "rpart")
+#model2 <- train(charges ~ ., data = train, method = "svmRadial")
+model3 <- train(charges ~ ., data = train, method = "rf")
 
 lm_pred = predict(model1, newdata=test)
-svm_pred = predict(model2, newdata = test)
-rpart_pred = predict(model3, newdata = test)
+#svm_pred = predict(model2, newdata = test)
+rf_pred = predict(model3, newdata = test)
 
 
 # Combine predictions using weighted average
-ensemble_pred <- (0.5 * lm_pred) + (0.5 * svm_pred)
+ensemble_pred <- (0.5 * lm_pred) + (0.5 * rf_pred)
 
 # Calculate RMSE of ensemble predictions
 rmse <- sqrt(mean((test$charges - ensemble_pred)^2))
